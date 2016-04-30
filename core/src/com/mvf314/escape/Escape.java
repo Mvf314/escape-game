@@ -51,7 +51,7 @@ public class Escape extends ApplicationAdapter {
 	
 	@Override
 	public void resize(int w, int h) {
-		
+		Gdx.graphics.setWindowedMode(Constants.APP_WIDTH, Constants.APP_HEIGHT);
 	}
 	
 	@Override

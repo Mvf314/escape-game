@@ -16,21 +16,24 @@ public class Board {
 	public Tile[][] tiles;
 	
 	public Sprite sea;
+	public Sprite player;
 	
 	public Board() {
 		
 		sea = new Sprite(new Texture(Gdx.files.internal("../res/tile/sea.png")));
+		player = new Sprite(new Texture(Gdx.files.internal("../res/tile/player.png")));
 		
-		tiles = new Tile[6][6];
+		tiles = new Tile[10][10];
 		for (Tile[] tileArray : tiles) {
 			Arrays.fill(tileArray, Tile.SEA);
 		}
+		tiles[3][3] = Tile.PLAYER;
 	}
 	
 	public void update(SpriteBatch batch) {
 		// x and y position of where to draw sprites, will change while drawing
-		int x = -Constants.APP_WIDTH / 2 + 100;
-		int y = Constants.APP_HEIGHT / 2 - 50;
+		int x = -tiles.length * 16;
+		int y = tiles[0].length * 16;
 		// counter for loop, will update x and y etc
 		int c = 0;
 		for (Tile[] tileArray : tiles) {
@@ -54,6 +57,9 @@ public class Board {
 		if (tile == Tile.SEA) {
 			sea.setPosition(x, y);
 			sea.draw(batch);
+		} else if (tile == Tile.PLAYER) {
+			player.setPosition(x, y);
+			player.draw(batch);
 		}
 	}
 	
