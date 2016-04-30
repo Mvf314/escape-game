@@ -3,31 +3,42 @@ package com.mvf314.escape.game;
 import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.graphics.Texture;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.mvf314.escape.game.Tile;
+import com.mvf314.escape.game.Player;
 
-import com.mvf314.escape.utils.Constants;
+import com.mvf314.escape.input.GameInput;
+import com.mvf314.escape.input.InputContainer;
 
 public class Board {
 	
 	public Tile[][] tiles;
 	
 	public Sprite sea;
-	public Sprite player;
+	public Sprite playerSpr;
+	
+	public GameInput input;
+	
+	public Player player;
 	
 	public Board() {
 		
-		sea = new Sprite(new Texture(Gdx.files.internal("../res/tile/sea.png")));
-		player = new Sprite(new Texture(Gdx.files.internal("../res/tile/player.png")));
+		input = new GameInput();
 		
-		tiles = new Tile[10][10];
+		sea = new Sprite(new Texture(Gdx.files.internal("../res/tile/sea.png")));
+		playerSpr = new Sprite(new Texture(Gdx.files.internal("../res/tile/player.png")));
+		
+		tiles = new Tile[15][10];
 		for (Tile[] tileArray : tiles) {
 			Arrays.fill(tileArray, Tile.SEA);
 		}
-		tiles[3][3] = Tile.PLAYER;
+		
+		player = new Player(tiles, 3, 4);
 	}
 	
 	public void update(SpriteBatch batch) {
@@ -51,6 +62,20 @@ public class Board {
 				}
 			}
 		}
+		handleInput(input.getInput());
+	}
+	
+	public void handleInput(InputContainer input) {
+		if (input.s) {
+			player.move(0, 1, tiles);
+		} else if (input.w) {
+			player.move(0, -1, tiles);
+		}
+		if (input.a) {
+			player.move(-1, 0, tiles);
+		} else if (input.d) {
+			player.move(1, 0, tiles);
+		}
 	}
 	
 	public void render(Tile tile, SpriteBatch batch, int x, int y) {
@@ -58,8 +83,8 @@ public class Board {
 			sea.setPosition(x, y);
 			sea.draw(batch);
 		} else if (tile == Tile.PLAYER) {
-			player.setPosition(x, y);
-			player.draw(batch);
+			playerSpr.setPosition(x, y);
+			playerSpr.draw(batch);
 		}
 	}
 	
