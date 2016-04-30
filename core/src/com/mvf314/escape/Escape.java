@@ -3,7 +3,6 @@ package com.mvf314.escape;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ApplicationAdapter;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -34,9 +33,6 @@ public class Escape extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		// clear screen
-		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		//  set projection matrix (no shit)
 		batch.setProjectionMatrix(cam.combined);
 		

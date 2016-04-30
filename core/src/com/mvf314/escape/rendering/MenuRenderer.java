@@ -1,5 +1,7 @@
 package com.mvf314.escape.rendering;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.utils.Disposable;
@@ -25,6 +27,7 @@ public class MenuRenderer implements Disposable {
 	 * @param batch	The open sprite batch
 	 */
 	public void render(SpriteBatch batch) {
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		fonts.menuText.draw(batch, "Play", Constants.APP_WIDTH / 2 - 100, 100);
 		fonts.menuText.draw(batch, "Options", Constants.APP_WIDTH / 2 - 150, 50);
 		fonts.menuText.draw(batch, "Quit", Constants.APP_WIDTH / 2 - 100, 0);

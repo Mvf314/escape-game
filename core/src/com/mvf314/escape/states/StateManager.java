@@ -3,7 +3,9 @@ package com.mvf314.escape.states;
 import com.mvf314.escape.states.GameState;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
+import com.mvf314.escape.rendering.GameRenderer;
 import com.mvf314.escape.rendering.MenuRenderer;
+import com.mvf314.escape.rendering.PausedRenderer;
 
 /**
  * This class manages game states;
@@ -14,11 +16,15 @@ public class StateManager implements Disposable {
 	private GameState state;
 	
 	private MenuRenderer menuRenderer;
+	private GameRenderer gameRenderer;
+	private PausedRenderer pausedRenderer;
 	
 	/** Initialize game state and menu renderer */
 	public StateManager() {
 		state = GameState.MENU;
 		menuRenderer = new MenuRenderer();
+		gameRenderer = new GameRenderer();
+		pausedRenderer = new PausedRenderer();
 	}
 	
 	/**
@@ -31,10 +37,10 @@ public class StateManager implements Disposable {
 			menuRenderer.render(batch);
 			break;
 		case GAME:
-			
+			gameRenderer.render(batch);
 			break;
 		case PAUSED:
-			
+			pausedRenderer.render(batch);
 			break;
 		}
 	}
@@ -56,13 +62,20 @@ public class StateManager implements Disposable {
 			}
 			return true;
 		case GAME:
-			
+			int gameChoice = gameRenderer.getInput();
+			if (gameChoice == -1) {
+				state = GameState.PAUSED;
+			}
 			return true;
 		case PAUSED:
-			
+			int pausedChoice = pausedRenderer.getInput();
+			if (pausedChoice != 1) {
+				state = GameState.GAME;
+			}
 			return true;
 		default:
-			
+			// I have no idea why this is needed but it is, so its staying
+			// Crashing code gets fixed, crappy code stays
 			return true;
 		}
 	}
