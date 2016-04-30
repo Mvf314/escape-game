@@ -47,7 +47,7 @@ public class StateManager implements Disposable {
 	
 	/**
 	 * Handle state input
-	 * @return If the game can continue running
+	 * @return If the game can continue running 
 	 */
 	public boolean handleInput() {
 		switch (state) {
@@ -69,7 +69,9 @@ public class StateManager implements Disposable {
 			return true;
 		case PAUSED:
 			int pausedChoice = pausedRenderer.getInput();
-			if (pausedChoice != 1) {
+			if (pausedChoice == -1) {
+				state = GameState.MENU;
+			} else if (pausedChoice != 1) {
 				state = GameState.GAME;
 			}
 			return true;
