@@ -38,4 +38,18 @@ public class StateManager {
 		}
 	}
 	
+	public void handleInput() {
+		switch (state) {
+		case MENU:
+			menuRenderer.getInput();;
+			break;
+		case GAME:
+			
+			break;
+		case PAUSED:
+			
+			break;
+		}
+	}
+	
 }

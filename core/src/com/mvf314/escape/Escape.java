@@ -42,6 +42,7 @@ public class Escape extends ApplicationAdapter {
 		
 		// render the current game state
 		stateManager.render(batch);
+		stateManager.getInput();
 		
 		batch.end();
 	}
