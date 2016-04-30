@@ -22,7 +22,7 @@ public class Fonts implements Disposable {
 		/*
 		 * ----- MENU FONT -----
 		 */
-		gen = new FreeTypeFontGenerator(Gdx.files.internal("../res/OpenSans.ttf"));
+		gen = new FreeTypeFontGenerator(Gdx.files.internal("../res/font/OpenSans.ttf"));
 		FreeTypeFontParameter menuTextP = new FreeTypeFontParameter();
 		menuTextP.size = 28;
 		menuTextP.borderWidth = 1;

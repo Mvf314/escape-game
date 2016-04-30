@@ -22,9 +22,8 @@ public class GameRenderer {
 	
 	public void render(SpriteBatch batch) {
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		fonts.menuText.draw(batch, "Game", 0, 0);
-		
-		board.render(batch);
+		//fonts.menuText.draw(batch, "Game", 0, 0);
+		board.update(batch);
 	}
 	
 	public int getInput() {
