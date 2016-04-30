@@ -25,7 +25,7 @@ public class Escape extends ApplicationAdapter {
 	
 	@Override
 	public void create() {
-		// initialize all resources
+		// initialize resources and some other shit
 		cam = new OrthographicCamera(Constants.APP_WIDTH, Constants.APP_HEIGHT);
 		fonts = new Fonts();
 		batch = new SpriteBatch();
@@ -37,12 +37,18 @@ public class Escape extends ApplicationAdapter {
 		// clear screen
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		//  set projection matrix (no shit)
 		batch.setProjectionMatrix(cam.combined);
+		
 		batch.begin();
 		
 		// render the current game state
 		stateManager.render(batch);
-		stateManager.getInput();
+		
+		// if "Quit" is pressed
+		if (!stateManager.handleInput()) {
+			Gdx.app.exit();
+		}
 		
 		batch.end();
 	}
@@ -64,7 +70,10 @@ public class Escape extends ApplicationAdapter {
 	
 	@Override
 	public void dispose() {
+		// dispose some shit
+		// I dont even know why I'm writing these comments anymore
 		batch.dispose();
 		fonts.dispose();
+		
 	}
 }

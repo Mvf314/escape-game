@@ -2,11 +2,15 @@ package com.mvf314.escape.rendering;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.utils.Disposable;
+
 import com.mvf314.escape.Fonts;
+
 import com.mvf314.escape.input.MenuInput;
+
 import com.mvf314.escape.utils.Constants;
 
-public class MenuRenderer {
+public class MenuRenderer implements Disposable {
 	
 	Fonts fonts;
 	MenuInput input;
@@ -26,9 +30,25 @@ public class MenuRenderer {
 		fonts.menuText.draw(batch, "Quit", Constants.APP_WIDTH / 2 - 100, 0);
 	}
 	
-	public void getInput() {
-		input.isPlayClicked();
-		input.isOptionsClicked();
+	/**
+	 * Get input from the menu
+	 * @return An int representing the button clicked
+	 */
+	public int getInput() {
+		if (input.isPlayClicked()) {
+			return 1;
+		} else if (input.isOptionsClicked()) {
+			return 2;
+		} else if (input.isQuitClicked()) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	@Override
+	public void dispose() {
+		fonts.dispose();
 	}
 	
 }
