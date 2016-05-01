@@ -9,4 +9,9 @@ public class Constants {
 	/** The height of the application in pixels */
 	public static final int APP_HEIGHT =	720;
 	
+	
+	
+	/** Number of frames between steps */
+	public static final int MOVE_COOLDOWN =	30;
+	
 }
