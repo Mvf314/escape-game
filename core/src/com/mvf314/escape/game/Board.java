@@ -21,10 +21,12 @@ public class Board {
 	
 	public Sprite sea;
 	public Sprite playerSpr;
+	public Sprite enemySpr;
 	
 	public GameInput input;
 	
 	public Player player;
+	public Enemy enemy;
 	
 	public Board() {
 		
@@ -32,6 +34,7 @@ public class Board {
 		
 		sea = new Sprite(new Texture(Gdx.files.internal("../res/tile/sea.png")));
 		playerSpr = new Sprite(new Texture(Gdx.files.internal("../res/tile/player.png")));
+		enemySpr = new Sprite(new Texture(Gdx.files.internal("../res/tile/enemy.png")));
 		
 		tiles = new Tile[15][10];
 		for (Tile[] tileArray : tiles) {
@@ -39,6 +42,7 @@ public class Board {
 		}
 		
 		player = new Player(tiles, 3, 4);
+		enemy = new Enemy(tiles, 5, 3);
 	}
 	
 	public void update(SpriteBatch batch) {
@@ -54,11 +58,9 @@ public class Board {
 					render(tile, batch, x, y);
 					x = x - (32 * (tileArray.length - 1));
 					y = y - 32;
-					//System.out.println(tile);
 				} else {
 					render(tile, batch, x, y);
 					x = x + 32;
-					//System.out.print(tile);
 				}
 			}
 		}
@@ -85,6 +87,9 @@ public class Board {
 		if (tile == Tile.SEA) {
 			sea.setPosition(x, y);
 			sea.draw(batch);
+		} else if (tile == Tile.ENEMY) {
+			enemySpr.setPosition(x, y);
+			enemySpr.draw(batch);
 		} else if (tile == Tile.PLAYER) {
 			playerSpr.setPosition(x, y);
 			playerSpr.draw(batch);
