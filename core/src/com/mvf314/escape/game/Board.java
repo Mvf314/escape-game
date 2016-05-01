@@ -75,6 +75,9 @@ public class Board {
 			player.move(-1, 0, tiles);
 		} else if (input.d) {
 			player.move(1, 0, tiles);
+		} else {
+			// this line of code is so that move() gets executed every frame so that the cooldown works
+			player.move(0, 0, tiles);
 		}
 	}
 	
