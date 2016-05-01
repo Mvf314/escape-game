@@ -9,9 +9,11 @@ public class DesktopLauncher {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		
-		cfg.title = 	Constants.APP_TITLE;
-		cfg.width = 	Constants.APP_WIDTH;
-		cfg.height = 	Constants.APP_HEIGHT;
+		cfg.title = 		Constants.APP_TITLE;
+		cfg.width = 		Constants.APP_WIDTH;
+		cfg.height = 		Constants.APP_HEIGHT;
+		cfg.foregroundFPS =	Constants.APP_FG_FPS;
+		cfg.foregroundFPS = Constants.APP_BG_FPS;
 		
 		new LwjglApplication(new Escape(), cfg);
 	}
