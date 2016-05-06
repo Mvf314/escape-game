@@ -22,6 +22,8 @@ public class Escape extends ApplicationAdapter {
 	
 	StateManager stateManager;
 	
+	// tfw you realize your entry point is looking incredibly clean but the code behind looks like horseshit
+	
 	@Override
 	public void create() {
 		// initialize resources and some other shit

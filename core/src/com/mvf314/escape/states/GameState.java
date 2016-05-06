@@ -6,5 +6,7 @@ public enum GameState {
 	/** Game loop */
 	GAME, 
 	/** Pause menu */
-	PAUSED;
+	PAUSED,
+	/** Dead */
+	DEAD;
 }

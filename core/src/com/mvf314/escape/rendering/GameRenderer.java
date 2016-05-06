@@ -13,22 +13,29 @@ public class GameRenderer {
 	public GameInput input;
 	public Fonts fonts;
 	public Board board;
+	public boolean dead;
 	
 	public GameRenderer() {
 		input = new GameInput();
 		fonts = new Fonts();
 		board = new Board();
+		dead = false;
 	}
 	
 	public void render(SpriteBatch batch) {
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//fonts.menuText.draw(batch, "Game", 0, 0);
 		board.update(batch);
+		if (board.checkDeath(board.player)) {
+			dead = true;
+		}
 	}
 	
 	public int getInput() {
 		if (input.isEscapePressed()) {
 			return -1;
+		}
+		if (dead) {
+			return 1;
 		}
 		return 0;
 	}

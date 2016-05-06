@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.mvf314.escape.rendering.GameRenderer;
 import com.mvf314.escape.rendering.MenuRenderer;
 import com.mvf314.escape.rendering.PausedRenderer;
+import com.mvf314.escape.game.Board;
+import com.mvf314.escape.rendering.DeadRenderer;
 
 /**
  * This class manages game states;
@@ -18,6 +20,7 @@ public class StateManager implements Disposable {
 	private MenuRenderer menuRenderer;
 	private GameRenderer gameRenderer;
 	private PausedRenderer pausedRenderer;
+	private DeadRenderer deadRenderer;
 	
 	/** Initialize game state and menu renderer */
 	public StateManager() {
@@ -25,6 +28,7 @@ public class StateManager implements Disposable {
 		menuRenderer = new MenuRenderer();
 		gameRenderer = new GameRenderer();
 		pausedRenderer = new PausedRenderer();
+		deadRenderer = new DeadRenderer(gameRenderer.board);
 	}
 	
 	/**
@@ -42,6 +46,8 @@ public class StateManager implements Disposable {
 		case PAUSED:
 			pausedRenderer.render(batch);
 			break;
+		case DEAD:
+			deadRenderer.render(batch);
 		}
 	}
 	
@@ -65,6 +71,8 @@ public class StateManager implements Disposable {
 			int gameChoice = gameRenderer.getInput();
 			if (gameChoice == -1) {
 				state = GameState.PAUSED;
+			} else if (gameChoice == 1) {
+				state = GameState.DEAD;
 			}
 			return true;
 		case PAUSED:
@@ -73,6 +81,12 @@ public class StateManager implements Disposable {
 				state = GameState.MENU;
 			} else if (pausedChoice != 1) {
 				state = GameState.GAME;
+			}
+			return true;
+		case DEAD:
+			int deadChoice = deadRenderer.getInput();
+			if (deadChoice == -1) {
+				state = GameState.MENU;
 			}
 			return true;
 		default:

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
@@ -13,7 +13,9 @@ import com.badlogic.gdx.utils.Disposable;
 
 public class Fonts implements Disposable {
 	
+	public GlyphLayout gl;
 	public BitmapFont menuText;
+	public BitmapFont statText;
 	
 	private FreeTypeFontGenerator gen;
 	
@@ -22,13 +24,27 @@ public class Fonts implements Disposable {
 		/*
 		 * ----- MENU FONT -----
 		 */
+		gl = new GlyphLayout();
 		gen = new FreeTypeFontGenerator(Gdx.files.internal("../res/font/OpenSans.ttf"));
-		FreeTypeFontParameter menuTextP = new FreeTypeFontParameter();
-		menuTextP.size = 28;
-		menuTextP.borderWidth = 1;
-		menuTextP.color = Color.SCARLET;
-		menuTextP.borderColor = Color.RED;
-		menuText = gen.generateFont(menuTextP);
+		FreeTypeFontParameter p = new FreeTypeFontParameter();
+		p.size = 28;
+		p.borderWidth = 1;
+		p.color = Color.SCARLET;
+		p.borderColor = Color.RED;
+		menuText = gen.generateFont(p);
+		/*
+		 * ----- STAT FONT -----
+		 */
+		p = new FreeTypeFontParameter();
+		p.size = 18;
+		p.borderWidth = 0;
+		p.color = Color.WHITE;
+		statText = gen.generateFont(p);
+	}
+	
+	public float getHalfWidth(BitmapFont font, String text) {
+		gl.setText(font, text);
+		return gl.width / 2;
 	}
 	
 	@Override
