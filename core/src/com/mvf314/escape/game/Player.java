@@ -32,7 +32,8 @@ public class Player {
 		tiles[y][x] = Tile.SEA;
 	}
 	
-	public void move(int x, int y) {
+	// returns if player has moved or not
+	public boolean move(int x, int y) {
 		/*
 		 * COLLISION DETECTION WITH THE BORDERS
 		 * it doesnt look very well, but at least it works
@@ -75,9 +76,11 @@ public class Player {
 				moveCD = Constants.MOVE_COOLDOWN;
 			}
 			update();
+			return true;
 		} else {
 			moveCD -= 1;
 		}
+		return false;
 	}
 
 }

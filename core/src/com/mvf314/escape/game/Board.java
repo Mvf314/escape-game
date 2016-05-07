@@ -45,8 +45,14 @@ public class Board {
 		enemy[0] = new Enemy(tiles, 5, 3);
 	}
 	
-	public Enemy[] getEnemies() {
-		return enemy;
+	public void attackPlayerWithAllEnemies(Enemy[] enemyArray) {
+		for (Enemy enemySingle : enemyArray) {
+			try {
+				enemySingle.attackPlayer(player);
+			} catch (NullPointerException e) {
+				// again the empty catch blocks D:
+			}
+		}
 	}
 	
 	public void update(SpriteBatch batch) {
@@ -74,14 +80,22 @@ public class Board {
 	
 	public void handleInput(InputContainer input) {
 		if (input.s) {
-			player.move(0, 1);
+			if (player.move(0, 1)) {
+				attackPlayerWithAllEnemies(enemy);
+			}
 		} else if (input.w) {
-			player.move(0, -1);
+			if (player.move(0, -1)) {
+				attackPlayerWithAllEnemies(enemy);
+			}
 		}
 		if (input.a) {
-			player.move(-1, 0);
+			if (player.move(-1, 0)) {
+				attackPlayerWithAllEnemies(enemy);
+			}
 		} else if (input.d) {
-			player.move(1, 0);
+			if (player.move(1, 0)) {
+				attackPlayerWithAllEnemies(enemy);
+			}
 		} else {
 			// this line of code is so that move() gets executed every frame so that the cooldown works
 			player.move(0, 0);
