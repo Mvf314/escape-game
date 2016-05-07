@@ -14,7 +14,7 @@ public class Constants {
 	// this is done to save processing power when in background
 	public static final int APP_BG_FPS = 	20;
 	
-	/** Number of frames between steps */
-	public static final int MOVE_COOLDOWN =	30;
+	/** Movement cooldown */
+	public static final int MOVE_COOLDOWN =	10;
 	
 }
