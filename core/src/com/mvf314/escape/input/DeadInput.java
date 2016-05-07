@@ -12,7 +12,7 @@ public class DeadInput {
 	public boolean isQuitClicked() {
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 			mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-			if (mousePos.x > 1160 && mousePos.x < 1280 && mousePos.y > 350 && mousePos.y < 400) {
+			if (mousePos.x > 540 && mousePos.x < 750 && mousePos.y > 650 && mousePos.y < 720) {
 				return true;
 			}
 		}
