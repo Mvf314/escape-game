@@ -15,6 +15,8 @@ public class DeadInput {
 			if (mousePos.x > 540 && mousePos.x < 750 && mousePos.y > 650 && mousePos.y < 720) {
 				return true;
 			}
+		} else if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+			return true;
 		}
 		return false;
 	}

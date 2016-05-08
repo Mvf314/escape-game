@@ -35,6 +35,8 @@ public class MenuInput {
 			if (mousePos.x > 1160 && mousePos.x < 1280 && mousePos.y > 350 && mousePos.y < 400) {
 				return true;
 			}
+		} else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+			return true;
 		}
 		return false;
 	}
